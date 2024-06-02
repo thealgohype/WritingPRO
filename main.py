@@ -1,36 +1,11 @@
 import streamlit as st
-from chain import setup_stuff, writingpro_chain 
-
-
-#wokring for direct links only
-import requests
+from chain import setup_stuff, writingpro_chain
+from utils import get_article
 from bs4 import BeautifulSoup
 
 setup_stuff()
 
-def get_article(url):
-    try:
-        # Send a GET request to the URL
-        response = requests.get(url)
-        response.raise_for_status()  # Raise an HTTPError for bad responses (4xx or 5xx)
-
-        # Parse the HTML content
-        soup = BeautifulSoup(response.content, 'html.parser')
-
-        # Extract the article text
-        # Here, we look for common tags that contain article text. This can be adjusted as needed.
-        paragraphs = soup.find_all('p')
-        article_content = '\n'.join([para.get_text() for para in paragraphs])
-
-        return article_content
-    except Exception as e:
-        print(f"Failed to load article from {url}: {e}")
-        return "Oopsie"
-
-
-
 # Define the Streamlit app
-
 st.set_page_config(page_title="WritingPRO", page_icon=":writing_hand:", layout="wide")
 st.subheader("WritingPRO : Your Newsletter Assistant")
 
@@ -47,12 +22,19 @@ if article_url:
             st.write(summary)
             st.write("Outline:")
             st.write(outline)
-            st.write("Newsletter:")
-            st.write(newsletter)          
+
+            # Debug: Check the type of newsletter before writing it to Streamlit
+            print(f"Newsletter Type: {type(newsletter)}")
+
+            # Ensure the newsletter is correctly formatted for Streamlit
+            if isinstance(newsletter, BeautifulSoup):
+                st.write("Newsletter:")
+                st.write(newsletter.prettify())  # prettify for better readability
+            else:
+                st.write("Failed to generate newsletter. Please try again.")
         else:
             st.write("Failed to load the article. Please check the URL and try again.")
     except Exception as e:
         st.write(f"An error occurred: {e}")
 
 st.divider()
-

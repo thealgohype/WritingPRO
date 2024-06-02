@@ -11,7 +11,6 @@ def get_article(url):
         soup = BeautifulSoup(response.content, 'html.parser')
 
         # Extract the article text
-        # Here, we look for common tags that contain article text. This can be adjusted as needed.
         paragraphs = soup.find_all('p')
         article_content = '\n'.join([para.get_text() for para in paragraphs])
 
@@ -19,5 +18,3 @@ def get_article(url):
     except Exception as e:
         print(f"Failed to load article from {url}: {e}")
         return "Oopsie"
-        #main
-
