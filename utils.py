@@ -19,3 +19,5 @@ def get_article(url):
     except Exception as e:
         print(f"Failed to load article from {url}: {e}")
         return "Oopsie"
+        #main
+
