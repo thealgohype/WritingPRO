@@ -15,7 +15,7 @@ from prompts import summarizer_prompt, researcher_prompt, writer_prompt
 from bs4 import BeautifulSoup
 
 # Defining Langchain Elements:
-claude_model = ChatAnthropic(model="claude-3-sonnet-20240229", api_key=os.environ['CLAUDE_API_KEY'])
+claude_model = ChatAnthropic(model="claude-3-sonnet-20240229", api_key= os.environ['CLAUDE_API_KEY'])
 perplexity_model = ChatPerplexity(model="llama-3-sonar-large-32k-online", temperature=0.7, api_key=os.environ['PERPLEXITY_KEY'])
 gpt_model = ChatOpenAI(model='gpt-3.5-turbo', temperature=0.6, api_key=os.environ['openai_key'])
 
