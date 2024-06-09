@@ -16,8 +16,10 @@ from bs4 import BeautifulSoup
 
 # Defining Langchain Elements:
 claude_model = ChatAnthropic(model="claude-3-sonnet-20240229", api_key= os.environ['CLAUDE_API_KEY'])
+claude_opus_model = ChatAnthropic(model="claude-3-sonnet-20240229", api_key= os.environ['CLAUDE_API_KEY'])
 perplexity_model = ChatPerplexity(model="llama-3-sonar-large-32k-online", temperature=0.7, api_key=os.environ['PERPLEXITY_KEY'])
 gpt_model = ChatOpenAI(model='gpt-3.5-turbo', temperature=0.6, api_key=os.environ['openai_key'])
+gpt4o_model = ChatOpenAI(model='gpt-4o', temperature=0.6, api_key=os.environ['openai_key'])
 
 parser = StrOutputParser()
 
@@ -48,8 +50,19 @@ def writingpro_chain(url: str):
     print(f"Outline: {outline}")
 
     # Writer Chain:
-    writer_chain = {'newsletter_outline': RunnablePassthrough()} | writer_prompt | claude_model | parser
-    newsletter_raw = writer_chain.invoke({"newsletter_outline": outline})
+    headline_chain = {'newsletter_outline': RunnablePassthrough()} | headline_prompt | gpt4o_model | parser
+    headline = headline_chain.invoke({"newsletter_outline": outline})
+    
+    # Writer Chain:
+    writer_chain = RunnableParallel(
+        newsletter_outline=RunnablePassthrough(),
+        headline=RunnablePassthrough()
+    ) | writer_prompt | claude_model | parser
+
+    newsletter_raw = writer_chain.invoke({
+        "newsletter_outline": outline, 
+        "headline": headline
+    })
 
     # Debug: Ensure newsletter_raw is correctly generated
     print(f"Newsletter Raw: {newsletter_raw}")

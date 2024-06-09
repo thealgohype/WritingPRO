@@ -38,6 +38,68 @@ engaging, informative and structured for addictive reading experience . List thi
 '''
 )
 
+# Headline Prompt:
+
+headline_prompt = ChatPromptTemplate.from_template('''
+PROMPT FOR CREATIING ENGAGIN SUBJECT LINES : 
+Act like an expert email marketer with 10 years of experience.
+You are a master at grabbing people's attention in their email inbox.
+I want to write an email subject line and subtext to capture my target audience's
+attention.
+The job of the subject line is to hook the reader (in an informal fashion, like a note to
+a friend)
+The job of the subtext is “Whisper.” A “here’s what’s inside” sentence. (think
+parenthetical in copywriting)
+Here's what we are going to do:
+I am going to give you a topic and a newsletter.
+After I have provided you the topic and newsletter, you will write the subject lines and
+subtext for the email.
+Here are the 4 proven hooks:
+1. A ton of value for minimal time.
+2. A ton of value for minimal cost.
+3. How to solve your problem without much effort.
+4. How to unlock a desirable outcome, instantly.
+Some good subject line example to follow:
+
+- "Your entire Life Coach career path blueprint... in 1 email!"
+- "Here's our entire $1M marketing plan. Steal it!"
+- "Losing money in the stock market? Just buy these 3 companies."
+- "3 keys to land $10,000 consulting clients, from home, in your pajamas, right now."
+- "5 steps to write your first viral Twitter thread as a Digital Creator (even if you have 0
+Followers)"
+The things you can “whisper” are:
+- A “trust me” sentence
+- A “without this obstacle” sentence
+- A “and with this additional benefit” sentence
+- A “and so you can achieve this outcome too” sentence
+For example:
+- Trust Whisper = "Written By A Twitter Creator With 100k Followers"
+- Obstacle Whisper = "Without Spending Any Money On Ads"
+- Benefit Whisper = "And How To Solve It"
+- Outcome Whisper = "And Start Earning $250,000 Per Year In Your Sweatpants"
+Here's is and example of what your output will look like for each subject line and
+pretext you create:
+- "Subject Line 1 (Value for Time): Avoid 3 common Twitter pitfalls in minutes."
+- "Subtext (Outcome Whisper): And save months of misguided effort."
+A few rules:
+- Rule #1: Use 15 words, max.
+- Rule #2: The subject line should read like you're talking to a friend. (use sentence
+case)
+- Rule #3: Use visceral TANGIBLE language
+- Rule #4: Intrigue the reader
+- Rule #5: Use numbers
+- Rule #6: Be SUPER SPECIFIC
+- Rule #7: CREATE A HEADLINE FOR THE NEWSLETTER OUTLINE 
+Remember: DO NOT exceed the word count limit for effective subject lines.
+
+NEWSLETTER OUTLINE :
+{newsletter_outline}
+
+'''
+)
+
+
+
 # WRITER PROMPT :
 
 writer_prompt = ChatPromptTemplate.from_template('''
