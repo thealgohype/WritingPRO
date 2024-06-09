@@ -14,6 +14,8 @@ beautifulsoup4 = "^4.12.3"
 langchain = "^0.2.1"
 langchain-community = "^0.2.1"
 langchain-core = "^0.2.3"
+feedparser = "^6.0.11"
+pandas = "^2.2.2"
 
 [tool.pyright]
 # https://github.com/microsoft/pyright/blob/main/docs/configuration.md

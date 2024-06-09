@@ -51,7 +51,7 @@ a friend)
 The job of the subtext is “Whisper.” A “here’s what’s inside” sentence. (think
 parenthetical in copywriting)
 Here's what we are going to do:
-I am going to give you a topic and a newsletter.
+I am going to give you a newsletter outline.
 After I have provided you the topic and newsletter, you will write the subject lines and
 subtext for the email.
 Here are the 4 proven hooks:
@@ -115,6 +115,10 @@ You are the best newsletter copywriter in the world with three decades of high-q
 </headline>
 </role>
 
+<facts and current info>
+{outline}
+</facts and current info>
+
 <templates>
 <template1>
   <headline>{headline}</headline>
@@ -162,57 +166,54 @@ You are the best newsletter copywriter in the world with three decades of high-q
 </template1>
 
 <template2>
-  <greeting>Hey {Reader}!</greeting>
-  <intro>This week’s roundup is all about {topic}:</intro>
+  <greeting>Hey Reader!</greeting>
+  <intro>This week’s roundup is all about [topic]:</intro>
   <sub-topics>
-    <item>💡 {Sub-topic example}</item>
-    <item>💡 {Sub-topic example}</item>
-    <item>💡 {Sub-topic example}</item>
+    <item>💡 [Sub-topic example]</item>
+    <item>💡 [Sub-topic example]</item>
+    <item>💡 [Sub-topic example]</item>
   </sub-topics>
-  <context>If you’re {short synopsis about where the reader is on their journey, and what their goals are}, then here are the resources you need to dig into to {achieve that goal}:</context>
+  <context>If you’re [short synopsis about where the reader is on their journey, and what their goals are], then here are the resources you need to dig into to [achieve that goal]:</context>
   <resources>
-    <item>{Resource Name + Link} (Reading Time) Description...</item>
-    <item>{Resource Name + Link} (Reading Time) Description...</item>
-    <item>{Resource Name + Link} (Reading Time) Description...</item>
-    <item>{Resource Name + Link} (Reading Time) Description...</item>
+    <item>[Resource Name + Link] (Reading Time) Description...</item>
+    <item>[Resource Name + Link] (Reading Time) Description...</item>
+    <item>[Resource Name + Link] (Reading Time) Description...</item>
+    <item>[Resource Name + Link] (Reading Time) Description...</item>
   </resources>
   <tip>
     <favorite-tip>Favorite Tip Of The Week:</favorite-tip>
-    <source>It’s from {Resource Name + Link}, and this completely changed the way I thought about {solving problem}.</source>
+    <source>It’s from [Resource Name + Link], and this completely changed the way I thought about [solving problem].</source>
     <breakdown>Here’s a quick breakdown:</breakdown>
     <steps>
-      <step>Step 1: {Explain}</step>
-      <step>Step 2: {Explain}</step>
-      <step>Step 3: {Explain}</step>
+      <step>Step 1: [Explain]</step>
+      <step>Step 2: [Explain]</step>
+      <step>Step 3: [Explain]</step>
     </steps>
   </tip>
   <news>
-    <headline>Other {Industry} News</headline>
+    <headline>Other [Industry] News</headline>
     <items>
-      <item>{News Item}: According to {source}, {event happened}. This is a big deal because {explain why}. Personally, I think this means {hypothesis of what’s going to happen in the future as a result}.</item>
-      <item>{News Item}: According to {source}, {event happened}. This is a big deal because {explain why}. Personally, I think this means {hypothesis of what’s going to happen in the future as a result}.</item>
-      <item>{News Item}: According to {source}, {event happened}. This is a big deal because {explain why}. Personally, I think this means {hypothesis of what’s going to happen in the future as a result}.</item>
+      <item>[News Item]: According to [source], [event happened]. This is a big deal because [explain why]. Personally, I think this means [hypothesis of what’s going to happen in the future as a result].</item>
+      <item>[News Item]: According to [source], [event happened]. This is a big deal because [explain why]. Personally, I think this means [hypothesis of what’s going to happen in the future as a result].</item>
+      <item>[News Item]: According to [source], [event happened]. This is a big deal because [explain why]. Personally, I think this means [hypothesis of what’s going to happen in the future as a result].</item>
     </items>
   </news>
   <closing>
     That’s it!
     As always, thanks for reading.
     Hit reply and let me know what you found most helpful this week—I’d love to hear from you!
-    See you next {day of the week you hit publish},
-    {Name}
+    See you next [day of the week you hit publish],
+    [Name]
   </closing>
 </template2>
 </templates>
 
 <instructions>
-You will receive a pre-generated newsletter subject within the {headline} placeholder. Based on the content and context provided, select the most appropriate template and generate the newsletter content accordingly.
+You will receive a pre-generated newsletter subject within the {headline} placeholder. Based on the content and context provided, select the most appropriate template and generate the newsletter content accordingly. Make sure the newsletter is well-structured, engaging, and informative. The output should be in HTML only. START BY DIRECTLY WRITING THE NEWSLETTER, no pre-text or post-text necessary. Use correct formatting for easy readibility and use emojis wherever necessary to make the article more engaging . Use facts and current info int he newsletter to make it more informative. You will be given 100 dolalrs based ont he engaing quality of the writing and visually readable output. Make sure the content is not too thin, the newsletter should fill in the details of the outline as if an amazing newsletter writer had written the final newsletter 
 </instructions>
 
 <input>
-<summary>{Insert Summary Here}</summary>
-<facts>{Insert Factual Statements Here}</facts>
-<expanded-facts>{Insert Expanded Facts and Insights Here}</expanded-facts>
-<quote>{Insert Quote and Citation Here}</quote>
+{newsletter_outline}
 </input>
 
 '''

@@ -5,13 +5,13 @@ from utils import get_article
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langchain_anthropic import ChatAnthropic
-from langchain_core.runnables import RunnablePassthrough, RunnableLambda
+from langchain_core.runnables import RunnablePassthrough, RunnableLambda, RunnableParallel
 from langchain_community.tools import BraveSearch
 from langchain_core.output_parsers import StrOutputParser
 from langchain_community.chat_models import ChatPerplexity
 from langchain_community.document_loaders import NewsURLLoader
 from langchain.tools import Tool
-from prompts import summarizer_prompt, researcher_prompt, writer_prompt
+from prompts import summarizer_prompt, researcher_prompt, writer_prompt, headline_prompt
 from bs4 import BeautifulSoup
 
 # Defining Langchain Elements:
@@ -49,24 +49,28 @@ def writingpro_chain(url: str):
     # Debug: Ensure outline is correctly generated
     print(f"Outline: {outline}")
 
-    # Writer Chain:
+    # Headline Chain:
     headline_chain = {'newsletter_outline': RunnablePassthrough()} | headline_prompt | gpt4o_model | parser
     headline = headline_chain.invoke({"newsletter_outline": outline})
     
     # Writer Chain:
     writer_chain = RunnableParallel(
         newsletter_outline=RunnablePassthrough(),
-        headline=RunnablePassthrough()
-    ) | writer_prompt | claude_model | parser
+        headline=RunnablePassthrough(),
+        outline=RunnablePassthrough(),
+    ) | writer_prompt | gpt4o_model | parser
 
     newsletter_raw = writer_chain.invoke({
         "newsletter_outline": outline, 
-        "headline": headline
+        "headline": headline,
+        "outline": outline
     })
 
     # Debug: Ensure newsletter_raw is correctly generated
     print(f"Newsletter Raw: {newsletter_raw}")
 
     # Parse the HTML content using BeautifulSoup
-    generated_newsletter = BeautifulSoup(newsletter_raw, 'html.parser')
+    generated_newsletter= newsletter_raw
+    #generated_newsletter = BeautifulSoup(newsletter_raw, 'html.parser')
+    
     return summary, outline, generated_newsletter
